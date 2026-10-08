@@ -1,0 +1,31 @@
+/* Bowst overrides for the upstream OpenSEO palette in app.css.
+   `:root[data-theme=...]` outranks app.css's `[data-theme=...]`, so these
+   win regardless of import order. Only override what we change. */
+
+:root[data-theme="openseo"] {
+  /* teal-600: white button text passes AA (5.46:1); brand teal #008BB3 does not */
+  --primary: #007296;
+  --primary-foreground: #ffffff;
+  --ring: #008bb3;
+  --sidebar-primary: #007296;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-ring: #008bb3;
+  --foreground: #131212;
+  --card-foreground: #131212;
+  --popover-foreground: #131212;
+  --background: #f6f7f8;
+  --destructive: #db0000;
+  --success: #108043;
+  --chart-1: #008bb3;
+  --chart-2: #203b56;
+}
+
+:root[data-theme="openseo-dark"] {
+  --primary: #008bb3;
+  --primary-foreground: #ffffff;
+  --ring: #008bb3;
+  --sidebar-primary: #008bb3;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-ring: #008bb3;
+  --chart-1: #008bb3;
+}
