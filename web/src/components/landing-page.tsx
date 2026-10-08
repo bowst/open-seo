@@ -547,8 +547,8 @@ function McpSection() {
               MCP. For ChatGPT on the web or a regular desktop chat,{" "}
               <a href="/docs/chatgpt" className="itc-textlink">
                 follow the ChatGPT setup steps
-              </a>{" "}
-              for your plan.
+              </a>
+              .
             </p>
             <div className="itc-mcp-ctas">
               <CopySetupPrompt />

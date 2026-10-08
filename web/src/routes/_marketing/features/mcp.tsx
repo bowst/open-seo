@@ -252,8 +252,8 @@ function McpPage() {
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-neutral-600">
           Follow the setup guide for your client. ChatGPT needs manual
-          connection steps, and its plan requirements depend on whether you use
-          the web or Codex in the desktop app.
+          connection steps on the web, or the setup prompt in Codex in the
+          desktop app.
         </p>
         <div className="mt-4">
           <a
@@ -266,7 +266,7 @@ function McpPage() {
             href="/docs/chatgpt"
             className="text-sm underline underline-offset-4"
           >
-            ChatGPT setup and plan requirements
+            ChatGPT setup guide
           </a>
         </div>
       </section>

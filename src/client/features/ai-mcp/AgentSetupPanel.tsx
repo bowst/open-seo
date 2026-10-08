@@ -33,9 +33,8 @@ export function AgentSetupPanel({
           install OpenSEO. Add the connection first.
         </p>
         <p className="text-muted-foreground">
-          You need ChatGPT Plus or higher for this custom connection. Free and
-          Go do not support it. Pro is not required. Workspace permissions can
-          also limit access.
+          This works on ChatGPT Free and paid plans. Workspace permissions can
+          limit access on Business, Enterprise, and Edu.
         </p>
         {hosted ? (
           <div className="rounded-xl border border-border p-5 space-y-4">
@@ -48,8 +47,8 @@ export function AgentSetupPanel({
               </li>
               <li>
                 Open <strong>Plugins → + → Create MCP App</strong>. Name it
-                OpenSEO, paste the server URL below, and choose{" "}
-                <strong>OAuth</strong>.
+                OpenSEO, paste the full server URL below, including https://,
+                and choose <strong>OAuth</strong>.
               </li>
               <li>
                 Create the connection and approve the OpenSEO sign-in. Install
