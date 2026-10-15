@@ -3,9 +3,9 @@ import { z } from "zod";
 import { ReportService } from "@/server/features/reports/services/ReportService";
 import { ReportTemplateService } from "@/server/features/reports/services/ReportTemplateService";
 import { captureServerEvent } from "@/server/lib/posthog";
-import { DEFAULT_CLIENT_LABEL } from "@/server/mcp/client-label";
 import { buildProjectMeta } from "@/server/mcp/context";
 import { mcpResponse, truncatePreview } from "@/server/mcp/formatters";
+import { reportAuthorLabel } from "@/server/mcp/report-author";
 import {
   looseObjectOutputSchema,
   optionalMetaOutputSchema,
@@ -147,7 +147,7 @@ export const saveReportTool = {
         templateId: args.templateId,
         // Never taken from the model: the label the transport derived from the
         // request.
-        createdBy: context.auth.clientLabel ?? DEFAULT_CLIENT_LABEL,
+        createdBy: reportAuthorLabel(context.auth.clientLabel),
         createdByUserId: context.auth.userId,
       });
 

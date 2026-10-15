@@ -79,6 +79,14 @@ declare namespace Cloudflare {
     OPENROUTER_API_KEY?: string;
     // Optional OpenRouter model slug override (defaults in openrouter.ts).
     OPENROUTER_MODEL?: string;
+
+    // Bowst: author shown on reports and templates saved over MCP, in place
+    // of the calling client's label ("Claude Code").
+    REPORT_AUTHOR_LABEL?: string;
+    // Bowst: the report runner on the Docker host (bowst/report-runner) that
+    // the Reports page's "Run report" button hands jobs to.
+    REPORT_RUNNER_URL?: string;
+    REPORT_RUNNER_TOKEN?: string;
   }
 }
 

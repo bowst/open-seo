@@ -5,6 +5,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { ReportsList } from "@/client/features/reports/ReportsList";
 import {
+  ReportRunsPanel,
+  useReportRuns,
+} from "@/client/features/reports/ReportRunsPanel";
+import { RunReportDialog } from "@/client/features/reports/RunReportDialog";
+import {
   DeleteReportModal,
   reportsQueryKey,
   useDeleteReport,
@@ -32,6 +37,10 @@ function ReportsPage() {
     staleTime: 0,
   });
 
+  // Bowst: the Run report button shows only where a report runner is set up.
+  const [runOpen, setRunOpen] = useState(false);
+  const runner = useReportRuns(projectId).data?.runner;
+
   const deleteMutation = useDeleteReport(projectId, () =>
     setPendingDelete(null),
   );
@@ -43,20 +52,32 @@ function ReportsPage() {
           title="Reports"
           description="HTML reports your agents saved to this project."
           actions={
-            <Button
-              variant="ghost"
-              nativeButton={false}
-              render={
-                <Link
-                  to="/p/$projectId/reports/templates"
-                  params={{ projectId }}
-                />
-              }
-            >
-              Templates
-            </Button>
+            <>
+              <Button
+                variant="ghost"
+                nativeButton={false}
+                render={
+                  <Link
+                    to="/p/$projectId/reports/templates"
+                    params={{ projectId }}
+                  />
+                }
+              >
+                Templates
+              </Button>
+              {runner && runner !== "unconfigured" ? (
+                <Button
+                  disabled={runner !== "ready"}
+                  onClick={() => setRunOpen(true)}
+                >
+                  Run report
+                </Button>
+              ) : null}
+            </>
           }
         />
+
+        <ReportRunsPanel projectId={projectId} />
 
         <QueryState query={reportsQuery} errorFallback="Failed to load reports">
           {(data) => (
@@ -68,6 +89,13 @@ function ReportsPage() {
           )}
         </QueryState>
       </div>
+
+      {runOpen ? (
+        <RunReportDialog
+          projectId={projectId}
+          onClose={() => setRunOpen(false)}
+        />
+      ) : null}
 
       {pendingDelete ? (
         <DeleteReportModal

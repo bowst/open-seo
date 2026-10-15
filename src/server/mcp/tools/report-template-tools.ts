@@ -1,9 +1,9 @@
 import { z } from "zod";
 import { ReportTemplateService } from "@/server/features/reports/services/ReportTemplateService";
 import { captureServerEvent } from "@/server/lib/posthog";
-import { DEFAULT_CLIENT_LABEL } from "@/server/mcp/client-label";
 import { buildProjectMeta } from "@/server/mcp/context";
 import { mcpResponse, truncatePreview } from "@/server/mcp/formatters";
+import { reportAuthorLabel } from "@/server/mcp/report-author";
 import {
   looseObjectOutputSchema,
   optionalMetaOutputSchema,
@@ -151,7 +151,7 @@ export const saveReportTemplateTool = {
           name: args.name,
           description: args.description,
           instructions: args.instructions,
-          createdBy: context.auth.clientLabel ?? DEFAULT_CLIENT_LABEL,
+          createdBy: reportAuthorLabel(context.auth.clientLabel),
           createdByUserId: context.auth.userId,
         });
 
